@@ -28,7 +28,8 @@ class Flat(models.Model):
     floor = models.CharField(
         "Этаж",
         max_length=3,
-        help_text='Первый этаж, последний этаж, пятый этаж')
+        help_text='Первый этаж, последний этаж, пятый этаж',
+        db_index=True)
 
     rooms_number = models.IntegerField(
         "Количество комнат в квартире",
@@ -47,7 +48,7 @@ class Flat(models.Model):
         blank=True,
         db_index=True)
 
-    new_building = models.NullBooleanField()
+    new_building = models.NullBooleanField(db_index=True)
     liked_by = models.ManyToManyField(User, related_name="liked_flats")
 
     def __str__(self):
